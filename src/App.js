@@ -1,18 +1,20 @@
-//import React from 'react';
-import Hello from './Hello';
+import { useEffect, useState } from 'react'
+import { createGlobalStyle } from 'styled-components'
 
-import Place from './Place';
-import ClassPlace from './ClassPlace';
-import ACTOR_DATA from './data.js';
-import Bar from './Bar';
-import ActorList from './ActorList';
-import { createGlobalStyle } from 'styled-components';
-
+// import ActorList from './ActorList'
+// import ClassPlace from './ClassPlace'
+// import ACTOR_DATA, { API_URL, FILTER, API_KEY, SETTINGS } from './data.js'
+// import Hello from './Hello'
+import Bar from './Bar'
+import { API_URL, MOVIE, FILTER, API_KEY, SETTINGS } from './data.js'
+import MovieList from './MovieList'
+import Place from './Place'
 
 const GlobalStyle = createGlobalStyle`
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 `
 
@@ -24,27 +26,27 @@ const list = [
     num_comments: 3,
     points: 4,
     objectID: 0,
-  }, {
+  },
+  {
     title: 'Redux',
     url: 'https://redux.js.org/',
     author: 'Dan Abramov, Andrew Clark',
     num_comments: 2,
     points: 5,
     objectID: 1,
-  }
-];
-
+  },
+]
 
 const welcome = {
   greeting: 'Yo',
-  title: 'FE20'
-};
+  title: 'FE20',
+}
 
-const myArray = ["I'm", "an", "array"];
-const myNumbers = [1, 4, 8];
+const myArray = ["I'm", 'an', 'array']
+const myNumbers = [1, 4, 8]
 
 function getTitle(title) {
-  return 'From Function' + title;
+  return 'From Function' + title
 }
 
 // const map1 = array1.map(x => x * 2);
@@ -52,7 +54,7 @@ function getTitle(title) {
 function writePTags(arr) {
   return arr.map(function (x, index) {
     console.log(x)
-    return (<p key={index}>{x}</p>);
+    return <p key={index}>{x}</p>
   })
 }
 
@@ -74,26 +76,43 @@ du har data i en variabel innehållandes skådisar.
 
 */
 
-
-const element = <Place location="Kilimanjaro" elevation="1500" />;
+const element = <Place location='Kilimanjaro' elevation='1500' />
 
 function App() {
+  const [movies, setMovies] = useState([])
+  const [filterState, setFilterState] = useState(FILTER[0])
+
+  useEffect(() => {
+    // console.log('Hej')
+    fetch(API_URL + MOVIE + filterState + API_KEY + SETTINGS)
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies(data.results)
+      })
+  }, [filterState])
+
+  const changeFilter = (e) => {
+    // setFilterState(e.target.data)
+    setFilterState(e.target.value)
+  }
+
   //console.log(ACTOR_DATA)
   return (
     <>
-    <GlobalStyle />
-    <div>
-      <h1>My Hacker Stories</h1>
+      <GlobalStyle />
+      <div>
+        <h1>My Hacker Stories</h1>
 
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
+        <label htmlFor='search'>Search: </label>
+        <input id='search' type='text' />
 
-      <Bar />
-      <Hello />
-      <ActorList data={ACTOR_DATA.cast} />
+        <Bar />
+        <MovieList data={movies} handleFilter={changeFilter} />
+        {/*<Hello />*/}
+        {/*<ActorList data={ACTOR_DATA.cast} />*/}
 
-      {/* <ClassPlace location="Kilimanjaro" elevation="1500" />; */}
-      {/*list.map(function (item) {
+        {/* <ClassPlace location="Kilimanjaro" elevation="1500" />; */}
+        {/*list.map(function (item) {
         return (
           <div key={item.objectID}>
             <span>
@@ -104,10 +123,9 @@ function App() {
             <span>{item.points}</span>
           </div>);
       })*/}
-    </div>
+      </div>
     </>
-  );
+  )
 }
 
-
-export default App;
+export default App
