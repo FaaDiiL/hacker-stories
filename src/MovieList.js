@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import MovieItem from './MovieItem'
+
 import { FILTER } from './data'
+import MovieItem from './MovieItem'
 
 const StyledUl = styled.ul`
   display: flex;
@@ -20,13 +21,6 @@ function MovieList({ data, handleFilter }) {
           </button>
         )
       })}
-      {/*<button value={FILTER[0]} onClick={handleFilter}>
-        // Now Playing //{' '}
-      </button> */}
-
-      {/*'<button value={FILTER[1]} onClick={handleFilter}>
-        // Now Playing //{' '}
-    </button> */}
 
       <StyledUl>
         {data.map((item) => {
