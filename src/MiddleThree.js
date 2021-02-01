@@ -1,9 +1,9 @@
 import MovieList from './MovieList'
 
-function MiddleThree({ data, display }) {
+function MiddleThree() {
   return (
     <>
-      <MovieList data={[]} display='Hej' />
+      <MovieList />
     </>
   )
 }

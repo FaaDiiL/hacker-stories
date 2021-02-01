@@ -8,6 +8,7 @@ import { createGlobalStyle } from 'styled-components'
 import Bar from './Bar'
 import { API_KEY, API_URL, FILTER, MOVIE, SETTINGS } from './data.js'
 import MiddleOne from './MiddleOne'
+import MovieContext from './MovieContext'
 import MovieList from './MovieList'
 
 // import Place from './Place'
@@ -98,9 +99,14 @@ function App() {
     setFilterState(e.target.value)
   }
 
-  //console.log(ACTOR_DATA)
+  const contextDataObject = {
+    data: movies,
+    Filter: changeFilter,
+  }
+
+  console.log(contextDataObject)
   return (
-    <>
+    <MovieContext.Provider value={contextDataObject}>
       <GlobalStyle />
       <div>
         <h1>My Hacker Stories</h1>
@@ -112,7 +118,7 @@ function App() {
         <MovieList data={movies} handleFilter={changeFilter} />
         <MiddleOne />
       </div>
-    </>
+    </MovieContext.Provider>
   )
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FILTER } from './data'
+import MovieContext from './MovieContext'
 import MovieItem from './MovieItem'
 
 const StyledUl = styled.ul`
@@ -10,24 +11,28 @@ const StyledUl = styled.ul`
   flex-wrap: wrap;
 `
 
-function MovieList({ data, handleFilter }) {
+function MovieList() {
   return (
-    <>
-      <h1>Now playing</h1>
-      {FILTER.map((myButton) => {
-        return (
-          <button value={myButton} onClick={handleFilter}>
-            {myButton.split('/')[1].replace('_', ' ').toUpperCase()}
-          </button>
-        )
-      })}
+    <MovieContext.Consumer>
+      {(value) => (
+        <>
+          <h1>Now playing</h1>
+          {FILTER.map((myButton, i) => {
+            return (
+              <button key={i} value={myButton} onClick={value.Filter}>
+                {myButton.split('/')[1].replace('_', ' ').toUpperCase()}
+              </button>
+            )
+          })}
 
-      <StyledUl>
-        {data.map((item) => {
-          return <MovieItem key={item.id} item={item} />
-        })}
-      </StyledUl>
-    </>
+          <StyledUl>
+            {value.data.map((item) => {
+              return <MovieItem key={item.id} item={item} />
+            })}
+          </StyledUl>
+        </>
+      )}
+    </MovieContext.Consumer>
   )
 }
 

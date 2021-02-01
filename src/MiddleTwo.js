@@ -1,9 +1,9 @@
 import MiddleThree from './MiddleThree'
 
-function MiddleTwo(props) {
+function MiddleTwo() {
   return (
     <>
-      <MiddleThree {...props} />
+      <MiddleThree />
     </>
   )
 }
