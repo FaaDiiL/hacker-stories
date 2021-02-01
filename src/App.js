@@ -6,9 +6,11 @@ import { createGlobalStyle } from 'styled-components'
 // import ACTOR_DATA, { API_URL, FILTER, API_KEY, SETTINGS } from './data.js'
 // import Hello from './Hello'
 import Bar from './Bar'
-import { API_URL, MOVIE, FILTER, API_KEY, SETTINGS } from './data.js'
+import { API_KEY, API_URL, FILTER, MOVIE, SETTINGS } from './data.js'
+import MiddleOne from './MiddleOne'
 import MovieList from './MovieList'
-import Place from './Place'
+
+// import Place from './Place'
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -18,53 +20,53 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 
-const list = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-]
+// const list = [
+//   {
+//     title: 'React',
+//     url: 'https://reactjs.org/',
+//     author: 'Jordan Walke',
+//     num_comments: 3,
+//     points: 4,
+//     objectID: 0,
+//   },
+//   {
+//     title: 'Redux',
+//     url: 'https://redux.js.org/',
+//     author: 'Dan Abramov, Andrew Clark',
+//     num_comments: 2,
+//     points: 5,
+//     objectID: 1,
+//   },
+// ]
 
-const welcome = {
-  greeting: 'Yo',
-  title: 'FE20',
-}
+// const welcome = {
+//   greeting: 'Yo',
+//   title: 'FE20',
+// }
 
-const myArray = ["I'm", 'an', 'array']
-const myNumbers = [1, 4, 8]
+// const myArray = ["I'm", 'an', 'array']
+// const myNumbers = [1, 4, 8]
 
-function getTitle(title) {
-  return 'From Function' + title
-}
+// function getTitle(title) {
+//   return 'From Function' + title
+// }
 
 // const map1 = array1.map(x => x * 2);
 
-function writePTags(arr) {
-  return arr.map(function (x, index) {
-    console.log(x)
-    return <p key={index}>{x}</p>
-  })
-}
+// function writePTags(arr) {
+//   return arr.map(function (x, index) {
+//     console.log(x)
+//     return <p key={index}>{x}</p>
+//   })
+// }
 
-function writePTagsWithoutMap(arr) {
-  let newArr = []
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push(<p key={i}>{arr[i]}</p>)
-  }
-  return newArr
-}
+// function writePTagsWithoutMap(arr) {
+//   let newArr = []
+//   for (let i = 0; i < arr.length; i++) {
+//     newArr.push(<p key={i}>{arr[i]}</p>)
+//   }
+//   return newArr
+// }
 
 /*
 du har data i en variabel innehållandes skådisar.
@@ -76,7 +78,7 @@ du har data i en variabel innehållandes skådisar.
 
 */
 
-const element = <Place location='Kilimanjaro' elevation='1500' />
+// const element = <Place location='Kilimanjaro' elevation='1500' />
 
 function App() {
   const [movies, setMovies] = useState([])
@@ -108,21 +110,7 @@ function App() {
 
         <Bar />
         <MovieList data={movies} handleFilter={changeFilter} />
-        {/*<Hello />*/}
-        {/*<ActorList data={ACTOR_DATA.cast} />*/}
-
-        {/* <ClassPlace location="Kilimanjaro" elevation="1500" />; */}
-        {/*list.map(function (item) {
-        return (
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </div>);
-      })*/}
+        <MiddleOne />
       </div>
     </>
   )
